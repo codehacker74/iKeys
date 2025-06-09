@@ -11,7 +11,8 @@ class CredentialConfigureCoordinator: PasswordSettingsCoordinator, CredentialCon
     
     let factory: CredentialConfigureFactory
     let credentialProviderDelegate: CredentialProviderDelegate?
-
+    private let accountManager: AccountCredentialsManager
+    
     private var currentCredential: AccountCredential?
     private var credentials: [AccountCredential] = []
     private let index: Int?
@@ -22,11 +23,12 @@ class CredentialConfigureCoordinator: PasswordSettingsCoordinator, CredentialCon
         self.index = index
         self.navigation = navigation
         self.credentialProviderDelegate = credentialProviderDelegate
-        super.init(credentialsManager: manager)
+        self.accountManager = manager
+        super.init(passwordManager: PasswordManager())
     }
     
     func credentialConfigureViewDidLoad(displayable: CredentialConfigureDisplayable) {
-        self.credentials = self.credentialsManager.fetchCredentials()
+        self.credentials = self.accountManager.fetchCredentials()
         if let index {
             let credential = self.credentials[index]
             displayable.fillFields(with: credential)
@@ -40,13 +42,13 @@ class CredentialConfigureCoordinator: PasswordSettingsCoordinator, CredentialCon
     }
     
     func generatePassword() -> String {
-        return self.credentialsManager.generatePassword()
+        return self.passwordManager.generatePassword()
     }
     
     func passwordTextFieldDidChange(_ displayable: CredentialConfigureDisplayable, text: String) {
         var passwordStrengthColor: UIColor = .red
         if !text.isEmpty {
-            passwordStrengthColor = self.credentialsManager.getPasswordStrengthColor(for: text)
+            passwordStrengthColor = self.passwordManager.getPasswordStrengthColor(for: text)
         }
         displayable.changePasswordTextFieldBackground(with: passwordStrengthColor)
     }
@@ -70,7 +72,7 @@ class CredentialConfigureCoordinator: PasswordSettingsCoordinator, CredentialCon
     }
     
     private func storeCredentialsAndPop(_ vc: CredentialConfigureMediatingController?){
-        if self.credentialsManager.storeCredentials(self.credentials) {
+        if self.accountManager.storeCredentials(self.credentials) {
             if !self.navigation.viewControllers.isEmpty {
                 self.navigation.popViewController(animated: true)
             } else {

@@ -76,7 +76,11 @@ final class AccountCredentialsMediatingControllerTests: XCTestCase {
         sut.cellUsernameButtonTapped(credential: cred)
         // then
         XCTAssertEqual(UIPasteboard.general.string, self.string)
-        XCTAssertNotNil(sut.copyToClipboardConfirmationView)
+        for view in sut.view.subviews {
+            if view is CopyToClipboardConfirmationView {
+                XCTAssertNotNil(view)
+            }
+        }
     }
     
     func testPasswordCopyToClipboard() {
@@ -89,7 +93,11 @@ final class AccountCredentialsMediatingControllerTests: XCTestCase {
         sut.cellPasswordButtonTapped(credential: cred)
         // then
         XCTAssertEqual(UIPasteboard.general.string, self.string)
-        XCTAssertNotNil(sut.copyToClipboardConfirmationView)
+        for view in sut.view.subviews {
+            if view is CopyToClipboardConfirmationView {
+                XCTAssertNotNil(view)
+            }
+        }
     }
     
     func testEditCredentialPerformanceWithForLoopFinder() {
@@ -120,7 +128,10 @@ final class AccountCredentialsMediatingControllerTests: XCTestCase {
         let button = sut.navigationItem.rightBarButtonItems!.last
         UIApplication.shared.sendAction(button!.action!, to: button?.target, from: self, for: nil)
         // then
-        XCTAssertNotNil(sut.copyToClipboardConfirmationView)
-        XCTAssertEqual(sut.copyToClipboardConfirmationView?.messageLabel.text, "Credentials up to date")
+        for view in sut.view.subviews {
+            if let confirmationView = view as? CopyToClipboardConfirmationView {
+                XCTAssertEqual(confirmationView.messageLabel.text, "Credentials up to date")
+            }
+        }
     }
 }

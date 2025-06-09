@@ -34,7 +34,6 @@ class AccountCredentialsMediatingController: UIViewController {
     }
 
     var delegate: AccountCredentialsDelegate?
-    var copyToClipboardConfirmationView: CopyToClipboardConfirmationView?
 
     private var credentials: [AccountCredential] = []
     private var filtered: [AccountCredential] = []
@@ -60,7 +59,6 @@ class AccountCredentialsMediatingController: UIViewController {
         if self.delegate?.accountCredentialsShouldShowCredential() == false {
             self.hideCells()
         }
-        self.dismissClipboardView()
     }
     
     private func searchBarMacSupport() {
@@ -238,19 +236,9 @@ extension AccountCredentialsMediatingController: AccountCredentialCellDelegate {
     }
 }
 
-extension AccountCredentialsMediatingController: CopyToClipboardViewDelegate, CopyToClipboardDelegate {
+extension AccountCredentialsMediatingController: CopyToClipboardViewDelegate {
     func showCopyToClipboardView(message: String?) {
-        if let _ = self.copyToClipboardConfirmationView {
-            self.replaceCopyToClipboardView(self.view, clipboardView: self.copyToClipboardConfirmationView, message: message, delegate: self, completion: { newClipboardView in
-                self.copyToClipboardConfirmationView = newClipboardView
-            })
-        } else {
-            self.copyToClipboardConfirmationView = self.showCopyToClipboardView(view: self.view, delegate: self, message: message)
-        }
-    }
-    
-    func dismissClipboardView() {
-        self.dismissCopyToClipboardView(self.view, self.copyToClipboardConfirmationView)
+        self.showCopyToClipboardView(view: self.view, message: message)
     }
 }
 

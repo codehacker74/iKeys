@@ -51,6 +51,9 @@
 		836052702A882C7B003D5BD2 /* PasswordSettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8360526F2A882C7A003D5BD2 /* PasswordSettingsCoordinator.swift */; };
 		836052722A8833DB003D5BD2 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839D99972A3C3A1100C59AC6 /* UIView+.swift */; };
 		836052732A883BBE003D5BD2 /* PasswordSettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8360526F2A882C7A003D5BD2 /* PasswordSettingsCoordinator.swift */; };
+		836B27772DE53FF000826312 /* PasswordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836B27762DE53FF000826312 /* PasswordManager.swift */; };
+		836B27782DE53FF000826312 /* PasswordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836B27762DE53FF000826312 /* PasswordManager.swift */; };
+		836B277C2DE5441700826312 /* PasswordManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836B27792DE5441700826312 /* PasswordManagerTests.swift */; };
 		837312772A415DF000886D86 /* UIViewLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837312762A415DF000886D86 /* UIViewLoading.swift */; };
 		83870EB52AB010CE007EF66A /* AutofillSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83870EB42AB010CE007EF66A /* AutofillSettings.swift */; };
 		83870EB62AB010CE007EF66A /* AutofillSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83870EB42AB010CE007EF66A /* AutofillSettings.swift */; };
@@ -179,6 +182,8 @@
 		836052692A8822CA003D5BD2 /* PasswordSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSettingsView.swift; sourceTree = "<group>"; };
 		8360526C2A88231E003D5BD2 /* PasswordSettingsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PasswordSettingsView.xib; sourceTree = "<group>"; };
 		8360526F2A882C7A003D5BD2 /* PasswordSettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSettingsCoordinator.swift; sourceTree = "<group>"; };
+		836B27762DE53FF000826312 /* PasswordManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordManager.swift; sourceTree = "<group>"; };
+		836B27792DE5441700826312 /* PasswordManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordManagerTests.swift; sourceTree = "<group>"; };
 		837312762A415DF000886D86 /* UIViewLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewLoading.swift; sourceTree = "<group>"; };
 		83870EB42AB010CE007EF66A /* AutofillSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutofillSettings.swift; sourceTree = "<group>"; };
 		839C8E472A48C3AA00EE1A94 /* AutofillCredentialProvider.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AutofillCredentialProvider.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -285,14 +290,16 @@
 			path = Unlock;
 			sourceTree = "<group>";
 		};
-		832875A02A31A4B5006694FE /* AccountManager */ = {
+		832875A02A31A4B5006694FE /* Managers */ = {
 			isa = PBXGroup;
 			children = (
 				832875A12A31A4E8006694FE /* AccountCredentialsManager.swift */,
 				83AD0FD42A340E92008B3C09 /* AccountCredentialsManagerTests.swift */,
 				9520B54929DBC04900FFD65B /* AccountCredential.swift */,
+				836B27762DE53FF000826312 /* PasswordManager.swift */,
+				836B27792DE5441700826312 /* PasswordManagerTests.swift */,
 			);
-			path = AccountManager;
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		83381E542A44015C0070C427 /* Main */ = {
@@ -301,7 +308,7 @@
 				839D99962A3C3A0900C59AC6 /* Extras */,
 				9520B54C29DBC5F600FFD65B /* Delegates */,
 				83AD0FCD2A330819008B3C09 /* Utilities */,
-				832875A02A31A4B5006694FE /* AccountManager */,
+				832875A02A31A4B5006694FE /* Managers */,
 			);
 			name = Main;
 			path = Extras/Main;
@@ -660,6 +667,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				836B27782DE53FF000826312 /* PasswordManager.swift in Sources */,
 				8349B68B2A9AEF08003886AE /* PadConstraints.swift in Sources */,
 				83F38ECA2A870D39000F0B98 /* CredentialConfigureFactory.swift in Sources */,
 				832DD4872A7F84BF007331BC /* CredentialProviderViewController.swift in Sources */,
@@ -727,6 +735,7 @@
 				832875882A302839006694FE /* AccountCredentialsCoordinator.swift in Sources */,
 				832875A22A31A4E8006694FE /* AccountCredentialsManager.swift in Sources */,
 				831288F02A384014009549F0 /* CredentialConfigureMediatingController.swift in Sources */,
+				836B27772DE53FF000826312 /* PasswordManager.swift in Sources */,
 				839D99932A3BFC3700C59AC6 /* CopyToClipboardConfirmationView.swift in Sources */,
 				832875822A302467006694FE /* UnlockMediatingController.swift in Sources */,
 				8328758A2A30285C006694FE /* AccountCredentialsFactory.swift in Sources */,
@@ -749,6 +758,7 @@
 				83EB7B7E2A9D9C38002848DE /* PreviewData.swift in Sources */,
 				8337E0C12A6B4F6700E9C99A /* TermsAndConditionsMediatingControllerTests.swift in Sources */,
 				8351B65C2AAED8F8003DCF43 /* IdentifierTextFieldCellTests.swift in Sources */,
+				836B277C2DE5441700826312 /* PasswordManagerTests.swift in Sources */,
 				83A25DB12A468A9500564588 /* AccountCredentialCellTests.swift in Sources */,
 				830D2E2F2A89A68E006D0710 /* PasswordSettingsViewTests.swift in Sources */,
 				83BAB20F2A731A7000E06493 /* AppLinkTests.swift in Sources */,
@@ -827,7 +837,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.8.1;
+				MARKETING_VERSION = 1.8.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.IronHacker.VaultPass---Password-Manager.AutofillCredentialProvider";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -859,7 +869,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.8.1;
+				MARKETING_VERSION = 1.8.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.IronHacker.VaultPass---Password-Manager.AutofillCredentialProvider";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1013,7 +1023,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.8.1;
+				MARKETING_VERSION = 1.8.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.IronHacker.VaultPass---Password-Manager";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1050,7 +1060,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.8.1;
+				MARKETING_VERSION = 1.8.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.IronHacker.VaultPass---Password-Manager";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

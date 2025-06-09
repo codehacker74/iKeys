@@ -35,8 +35,8 @@ final class PasswordSettingsViewTests: XCTestCase {
     
     func testPasswordSettingsSetFromManager() {
         // given
-        let manager = AccountCredentialsManager()
-        let delegate = PasswordSettingsCoordinator(credentialsManager: manager)
+        let manager = PasswordManager()
+        let delegate = PasswordSettingsCoordinator(passwordManager: manager)
         let view: PasswordSettingsView = PasswordSettingsView.initFromNib()
         // when
         view.setup(delegate: delegate)
@@ -51,9 +51,9 @@ final class PasswordSettingsViewTests: XCTestCase {
     
     func testLowerCaseSwitchIsReflectedInManager() {
         // given
-        let manager = AccountCredentialsManager()
+        let manager = PasswordManager()
         let currentLowerCase = manager.useLowerCaseLetters
-        let delegate = PasswordSettingsCoordinator(credentialsManager: manager)
+        let delegate = PasswordSettingsCoordinator(passwordManager: manager)
         let view: PasswordSettingsView = PasswordSettingsView.initFromNib()
         // when
         view.setup(delegate: delegate)
@@ -64,9 +64,9 @@ final class PasswordSettingsViewTests: XCTestCase {
     
     func testUpperCaseSwitchIsReflectedInManager() {
         // given
-        let manager = AccountCredentialsManager()
+        let manager = PasswordManager()
         let currentUpperCase = manager.useUpperCaseLetters
-        let delegate = PasswordSettingsCoordinator(credentialsManager: manager)
+        let delegate = PasswordSettingsCoordinator(passwordManager: manager)
         let view: PasswordSettingsView = PasswordSettingsView.initFromNib()
         // when
         view.setup(delegate: delegate)
@@ -77,9 +77,9 @@ final class PasswordSettingsViewTests: XCTestCase {
     
     func testNumbersSwitchIsReflectedInManager() {
         // given
-        let manager = AccountCredentialsManager()
+        let manager = PasswordManager()
         let currentNumbers = manager.useNumbers
-        let delegate = PasswordSettingsCoordinator(credentialsManager: manager)
+        let delegate = PasswordSettingsCoordinator(passwordManager: manager)
         let view: PasswordSettingsView = PasswordSettingsView.initFromNib()
         // when
         view.setup(delegate: delegate)
@@ -90,9 +90,9 @@ final class PasswordSettingsViewTests: XCTestCase {
     
     func testSpecialCaseSwitchIsReflectedInManager() {
         // given
-        let manager = AccountCredentialsManager()
+        let manager = PasswordManager()
         let currentSpecialChars = manager.useSpecialChars
-        let delegate = PasswordSettingsCoordinator(credentialsManager: manager)
+        let delegate = PasswordSettingsCoordinator(passwordManager: manager)
         let view: PasswordSettingsView = PasswordSettingsView.initFromNib()
         // when
         view.setup(delegate: delegate)
@@ -103,10 +103,10 @@ final class PasswordSettingsViewTests: XCTestCase {
     
     func testPasswordLengthSliderChangeDoesChangeLengthInManager() {
         // given
-        let manager = AccountCredentialsManager()
+        let manager = PasswordManager()
         manager.setPasswordSettingsToDefault()
         let currentLength = manager.passwordLength
-        let delegate = PasswordSettingsCoordinator(credentialsManager: manager)
+        let delegate = PasswordSettingsCoordinator(passwordManager: manager)
         let view: PasswordSettingsView = PasswordSettingsView.initFromNib()
         // when
         view.setup(delegate: delegate)
@@ -118,9 +118,9 @@ final class PasswordSettingsViewTests: XCTestCase {
     
     func testPasswordLengthSliderChangesLabel() {
         // given
-        let manager = AccountCredentialsManager()
+        let manager = PasswordManager()
         manager.setPasswordSettingsToDefault()
-        let delegate = PasswordSettingsCoordinator(credentialsManager: manager)
+        let delegate = PasswordSettingsCoordinator(passwordManager: manager)
         let view: PasswordSettingsView = PasswordSettingsView.initFromNib()
         // when
         view.setup(delegate: delegate)
@@ -132,10 +132,10 @@ final class PasswordSettingsViewTests: XCTestCase {
     
     func testPasswordStengthColorChanges() {
         // given
-        let manager = AccountCredentialsManager()
+        let manager = PasswordManager()
         manager.setPasswordSettingsToDefault()
         let currentColor = manager.passwordStrengthColor()
-        let delegate = PasswordSettingsCoordinator(credentialsManager: manager)
+        let delegate = PasswordSettingsCoordinator(passwordManager: manager)
         let view: PasswordSettingsView = PasswordSettingsView.initFromNib()
         // when
         view.setup(delegate: delegate)
