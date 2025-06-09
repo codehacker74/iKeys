@@ -7,51 +7,50 @@
 
 
 class PasswordSettingsCoordinator: PasswordSettingsDelegate {
+    let passwordManager: PasswordManager
     
-    let credentialsManager: AccountCredentialsManager
-    
-    init(credentialsManager: AccountCredentialsManager) {
-        self.credentialsManager = credentialsManager
+    init(passwordManager: PasswordManager) {
+        self.passwordManager = passwordManager
     }
     
     func setupPasswordSettings(displayable: PasswordSettingsDisplayable) {
-        let lowerCaseSwitch = credentialsManager.useLowerCaseLetters
-        let upperCaseSwitch = credentialsManager.useUpperCaseLetters
-        let numbersSwtich = credentialsManager.useNumbers
-        let specialCharsSwitch = credentialsManager.useSpecialChars
-        let passwordLength = credentialsManager.passwordLength
-        let passwordStrength =  credentialsManager.passwordStrengthColor()
+        let lowerCaseSwitch = passwordManager.useLowerCaseLetters
+        let upperCaseSwitch = passwordManager.useUpperCaseLetters
+        let numbersSwtich = passwordManager.useNumbers
+        let specialCharsSwitch = passwordManager.useSpecialChars
+        let passwordLength = passwordManager.passwordLength
+        let passwordStrength =  passwordManager.passwordStrengthColor()
         displayable.setOutlets(lowerCaseSwitch: lowerCaseSwitch, upperCaseSwitch: upperCaseSwitch, numbersSwitch: numbersSwtich, specialCharsSwitch: specialCharsSwitch, passwordLength: passwordLength)
         displayable.changePasswordStrengthColor(passwordStrength)
     }
     
     func lowerCaseLettersSwitchChanged(displayable: PasswordSettingsDisplayable) {
-        self.credentialsManager.toggleStringType(of: .lowerCase)
+        self.passwordManager.toggleStringType(of: .lowerCase)
         self.passwordSettingsChanged(displayable: displayable)
     }
     
     func upperCaseLettersSwitchChanged(displayable: PasswordSettingsDisplayable) {
-        self.credentialsManager.toggleStringType(of: .upperCase)
+        self.passwordManager.toggleStringType(of: .upperCase)
         self.passwordSettingsChanged(displayable: displayable)
     }
     
     func numbersSwitchChanged(displayable: PasswordSettingsDisplayable) {
-        self.credentialsManager.toggleStringType(of: .numbers)
+        self.passwordManager.toggleStringType(of: .numbers)
         self.passwordSettingsChanged(displayable: displayable)
     }
     
     func specialCharSwitchChanged(displayable: PasswordSettingsDisplayable) {
-        self.credentialsManager.toggleStringType(of: .specialChar)
+        self.passwordManager.toggleStringType(of: .specialChar)
         self.passwordSettingsChanged(displayable: displayable)
     }
     
     func passwordLengthChanged(length: Int, displayable: PasswordSettingsDisplayable) {
-        self.credentialsManager.changePasswordLength(length)
+        self.passwordManager.changePasswordLength(length)
         self.passwordSettingsChanged(displayable: displayable)
     }
     
     func passwordSettingsChanged(displayable: PasswordSettingsDisplayable) {
-        let passwordStrengthColor = self.credentialsManager.passwordStrengthColor()
+        let passwordStrengthColor = self.passwordManager.passwordStrengthColor()
         displayable.changePasswordStrengthColor(passwordStrengthColor)
     }
 }

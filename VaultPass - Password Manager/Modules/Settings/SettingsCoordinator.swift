@@ -9,12 +9,14 @@ import UIKit
 
 class SettingsCoordinator: PasswordSettingsCoordinator, SettingsDelegate {
     
+    private let accountManager: AccountCredentialsManager
     private let navigation: UINavigationController
     private let userData: UserData = UserData()
     
     init(credentialsManager: AccountCredentialsManager, navigation: UINavigationController) {
+        self.accountManager = credentialsManager
         self.navigation = navigation
-        super.init(credentialsManager: credentialsManager)
+        super.init(passwordManager: PasswordManager())
     }
     
     func settingsControllerViewDidLoad(_ displayable: SettingsDisplayable) {
@@ -50,7 +52,8 @@ class SettingsCoordinator: PasswordSettingsCoordinator, SettingsDelegate {
     
     func deleteAllData() {
         CustomAlert.destructive(self.navigation, title: "Are you sure you want to delete everything?", message: "This action is irreversible and will be permanent", deleteBtn: "Delete", deleteAction: { _ in
-            self.credentialsManager.deleteAllData()
+            self.accountManager.deleteAllData()
+            self.passwordManager.deletePasswordData()
             self.userData.deleteData()
             KeychainService.standard.deleteKey()
             self.replaceViewWithUnlockScreen()

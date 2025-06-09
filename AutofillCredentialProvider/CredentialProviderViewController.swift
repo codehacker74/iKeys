@@ -142,20 +142,15 @@ extension CredentialProviderViewController: UITableViewDelegate, UITableViewData
     }
     
     private func locateAndAddIdentifier(to credential: AccountCredential, index: Int, identifier: String) {
-        guard searchIsActive() == false else {
-            for index in 0..<self.credentials.count {
-                if credential == self.credentials[index] {
-                    self.addIdentifier(with: index, and: identifier)
+        var index = index
+        if searchIsActive() {
+            for i in 0..<self.credentials.count {
+                if credential == self.credentials[i] {
+                    index = i
                 }
             }
-            return
         }
-        self.addIdentifier(with: index, and: identifier)
-    }
-    
-    private func addIdentifier(with index: Int, and identifier: String) {
-        let subStringIdentifier = identifier.components(separatedBy: ".com")
-        self.credentials[index].identifiers.append(subStringIdentifier.first ?? identifier)
+        self.credentials[index].addIdentifier(identifier)
         let _ = self.manager.storeCredentials(self.credentials)
     }
 }

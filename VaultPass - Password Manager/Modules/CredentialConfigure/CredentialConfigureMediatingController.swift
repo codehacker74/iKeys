@@ -55,7 +55,6 @@ class CredentialConfigureMediatingController: UIViewController {
     var identifiers: [String] = []
     private let cellIdentifier: String = "IdentifierTextFieldCell"
     var passwordSettingsView: PasswordSettingsView?
-    var copyToClipboardConfirmationView: CopyToClipboardConfirmationView?
     var shadowView: UIView?
     
     init(delegate: CredentialConfigureDelegate?) {
@@ -299,19 +298,9 @@ extension CredentialConfigureMediatingController: UITextFieldDelegate {
     }
 }
 
-extension CredentialConfigureMediatingController: CopyToClipboardViewDelegate, CopyToClipboardDelegate {
+extension CredentialConfigureMediatingController: CopyToClipboardViewDelegate {
     func showCopyToClipboardView(message: String?) {
-        if let _ = self.copyToClipboardConfirmationView {
-            self.replaceCopyToClipboardView(self.view, clipboardView: self.copyToClipboardConfirmationView, message: message, delegate: self, completion: { newClipboardView in
-                self.copyToClipboardConfirmationView = newClipboardView
-            })
-        } else {
-            self.copyToClipboardConfirmationView = self.showCopyToClipboardView(view: self.view, delegate: self, message: message)
-        }
-    }
-    
-    func dismissClipboardView() {
-        self.dismissCopyToClipboardView(self.view, self.copyToClipboardConfirmationView)
+        self.showCopyToClipboardView(view: self.view, message: message)
     }
 }
 

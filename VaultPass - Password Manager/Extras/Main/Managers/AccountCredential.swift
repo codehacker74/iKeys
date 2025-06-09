@@ -46,6 +46,29 @@ class AccountCredential: Equatable, Codable {
         }
         return false
     }
+    
+    func addIdentifier(_ identifier: String) {
+        guard self.identifiers.count < 5 else { return }
+        self.identifiers.append(shortenURL(identifier))
+    }
+    
+    private func shortenURL(_ urlString: String) -> String {
+        guard let url = URL(string: urlString) else { return urlString }
+
+        var components = [String]()
+        if let host = url.host {
+            components.append(host)
+        }
+        let path = url.path
+            .split(separator: "/")
+            .prefix(1)
+            .joined(separator: "/")
+        if !path.isEmpty {
+            components.append(path)
+        }
+
+        return components.joined(separator: "/")
+    }
 }
 
 
@@ -54,4 +77,5 @@ extension AccountCredential {
         return NSFetchRequest<EncryptedCredentials>(entityName: "EncryptedCredentials")
     }
     @NSManaged public var credentials: Data?
+    @NSManaged public var lastUpdated: Date?
 }
